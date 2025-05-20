@@ -7,7 +7,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
+import ohm.softa.a07.model.Meal;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,6 +24,14 @@ public class MainController implements Initializable {
 	@FXML
 	private ListView<String> mealsList;
 
+	@FXML
+	private Button btnClose;
+
+	@FXML
+	private CheckBox chkVegetarian;
+
+	private ObservableList<Meal> myList;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// set the event handler (callback)
@@ -32,5 +43,24 @@ public class MainController implements Initializable {
 				mealsList.setItems(list);
 			}
 		});
+
+		//muss man nicht in Labdafunktionen bzw. in der Initialize machen
+		btnClose.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				Stage stage = (Stage) btnClose.getScene().getWindow();
+				stage.close();
+			}
+		});
+
+		chkVegetarian.selectedProperty(new EventHandler<ActionEvent>(){
+			ListView<String> vegetarian = new ListView<>();
+			ObservableList<String> meals = mealsList.getItems();
+			for(String i : meals){
+
+			}
+		});
+
+
 	}
 }
