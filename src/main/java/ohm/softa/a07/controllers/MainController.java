@@ -22,7 +22,7 @@ public class MainController implements Initializable {
 	private Button btnRefresh;
 
 	@FXML
-	private ListView<String> mealsList;
+	private ListView<Meal> mealsList;
 
 	@FXML
 	private Button btnClose;
@@ -53,14 +53,15 @@ public class MainController implements Initializable {
 			}
 		});
 
-		chkVegetarian.selectedProperty(new EventHandler<ActionEvent>(){
-			ListView<String> vegetarian = new ListView<>();
-			ObservableList<String> meals = mealsList.getItems();
-			for(String i : meals){
+		chkVegetarian.selectedProperty();
+	}
 
+	private void Test(){
+		ObservableList<Meal> meals = mealsList.getItems();
+		for(Meal i : meals){
+			if(i.getCategory().equals("Vegetarian")){
+				myList.add(i);
 			}
-		});
-
-
+		}
 	}
 }
