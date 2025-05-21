@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import jdk.incubator.vector.VectorOperators;
 import ohm.softa.a07.model.Meal;
 
 import java.net.URL;
@@ -39,7 +40,7 @@ public class MainController implements Initializable {
 			@Override
 			public void handle(ActionEvent event) {
 				// create a new (observable) list and tie it to the view
-				ObservableList<String> list = FXCollections.observableArrayList("Hans", "Dampf");
+				ObservableList<Meal> list = FXCollections.observableArrayList();
 				mealsList.setItems(list);
 			}
 		});
@@ -53,13 +54,17 @@ public class MainController implements Initializable {
 			}
 		});
 
-		chkVegetarian.selectedProperty();
+		chkVegetarian.selectedProperty().addListener((observable, oldValue, newValue) ->{
+			if(newValue){
+				Test();
+			}
+		});
 	}
 
 	private void Test(){
 		ObservableList<Meal> meals = mealsList.getItems();
 		for(Meal i : meals){
-			if(i.getCategory().equals("Vegetarian")){
+			if(i.isVegetarian()){
 				myList.add(i);
 			}
 		}

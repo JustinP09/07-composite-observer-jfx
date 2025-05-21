@@ -87,4 +87,8 @@ public class Meal {
 		}
 		return String.format("%s\n%s\n%s", name, category, notesBuilder.toString());
 	}
+
+	public boolean isVegetarian(){
+		return !(this.toString().contains("fleisch"));
+	}
 }
